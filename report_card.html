@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+
+        #reportCard {
+            max-width: 400px;
+            margin: auto;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        #totalGrade {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        #gradeMessage {
+            margin-top: 10px;
+            color: #333;
+        }
+    </style>
+    <title>Report Card</title>
+</head>
+<body>
+    <div id="reportCard">
+        <h2>Report Card</h2>
+        <table>
+            <tr>
+                <th>Subject</th>
+                <th>Grade</th>
+            </tr>
+            <tr>
+                <td>Math</td>
+                <td id="mathGrade">A</td>
+            </tr>
+            <tr>
+                <td>Science</td>
+                <td id="scienceGrade">B</td>
+            </tr>
+            <tr>
+                <td>English</td>
+                <td id="englishGrade">A</td>
+            </tr>
+        </table>
+        <div id="totalGrade">Total Grade: <span id="total">A</span></div>
+        <div id="gradeMessage">Congratulations! Keep up the good work!</div>
+    </div>
+
+    <script>
+        // Calculate total grade and update the totalGrade span
+        function calculateTotalGrade() {
+            const mathGrade = document.getElementById('mathGrade').innerText;
+            const scienceGrade = document.getElementById('scienceGrade').innerText;
+            const englishGrade = document.getElementById('englishGrade').innerText;
+
+            // Simple average calculation for demonstration purposes
+            const averageGrade = (gradeToNumber(mathGrade) + gradeToNumber(scienceGrade) + gradeToNumber(englishGrade)) / 3;
+
+            const totalGrade = document.getElementById('total');
+            totalGrade.innerText = numberToGrade(averageGrade);
+        }
+
+        // Helper function to convert letter grades to numerical values
+        function gradeToNumber(grade) {
+            switch (grade) {
+                case 'A': return 4.0;
+                case 'B': return 3.0;
+                case 'C': return 2.0;
+                case 'D': return 1.0;
+                case 'F': return 0.0;
+                default: return 0.0;
+            }
+        }
+
+        // Helper function to convert numerical values to letter grades
+        function numberToGrade(number) {
+            if (number >= 3.5) return 'A';
+            if (number >= 2.5) return 'B';
+            if (number >= 1.5) return 'C';
+            if (number >= 0.5) return 'D';
+            return 'F';
+        }
+
+        // Call calculateTotalGrade when the page loads
+        window.onload = calculateTotalGrade;
+    </script>
+</body>
+</html>
